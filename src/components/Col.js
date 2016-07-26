@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import createProps from '../createProps';
 import style from 'flexboxgrid';
 
@@ -48,10 +48,17 @@ function getClassNames(props) {
     .join(' ');
 }
 
-export default function Col(props) {
-  const className = getClassNames(props);
+class Col extends Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+    const className = getClassNames(this.props);
 
-  return React.createElement(props.tagName || 'div', createProps(propTypes, props, className));
+    return React.createElement(this.props.tagName || 'div', createProps(propTypes, this.props, className));
+  }
+
 }
 
 Col.propTypes = propTypes;
+export default Col;
